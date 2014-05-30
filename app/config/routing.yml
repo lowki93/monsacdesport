@@ -1,0 +1,4 @@
+mon_sac_de_sport:
+    resource: "@MonSacDeSportBundle/Resources/config/routing.yml"
+    prefix:   /
+

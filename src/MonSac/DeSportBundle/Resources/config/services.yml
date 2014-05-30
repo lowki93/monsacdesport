@@ -1,0 +1,7 @@
+parameters:
+#    mon_sac_de_sport.example.class: MonSac\DeSportBundle\Example
+
+services:
+#    mon_sac_de_sport.example:
+#        class: %mon_sac_de_sport.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
