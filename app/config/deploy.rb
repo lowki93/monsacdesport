@@ -7,6 +7,7 @@ set :stages, %w(prod demo)
 set :application, "Monsacdesport"
 set :app_path,    "app"
 set :user, "mbreziat"
+set :password, "12azerty34"
 
 set :repository,  ".git"
 set :scm,         :git
