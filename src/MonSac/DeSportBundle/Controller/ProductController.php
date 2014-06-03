@@ -44,7 +44,7 @@ class ProductController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('product_show', array('slug' => $entity->getSlug(), 'id' => $entity->getId())));
         }
 
         return $this->render('MonSacDeSportBundle:Product:new.html.twig', array(
@@ -63,7 +63,7 @@ class ProductController extends Controller
     private function createCreateForm(Product $entity)
     {
         $form = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl('_create'),
+            'action' => $this->generateUrl('product_create'),
             'method' => 'POST',
         ));
 
