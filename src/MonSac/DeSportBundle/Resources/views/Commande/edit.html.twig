@@ -1,13 +1,13 @@
-{% extends '::base.html.twig' %}
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
 
-{% block body -%}
-    <h1>Modifier un article</h1>
+{% block content %}
+    <h1>Commande edit</h1>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('') }}">
+        <a href="{{ path('commande') }}">
             Back to the list
         </a>
     </li>

@@ -1,0 +1,40 @@
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
+
+{% block content %}
+    <h1>Commande</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Numcommande</th>
+                <td>{{ entity.numCommande }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Sentat</th>
+                <td>{{ entity.sentAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('commande') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('commande_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

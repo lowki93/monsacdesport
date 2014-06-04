@@ -5,47 +5,37 @@ namespace MonSac\DeSportBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use MonSac\DeSportBundle\Entity\Product;
-use MonSac\DeSportBundle\Form\ProductType;
+use MonSac\DeSportBundle\Entity\Commande;
+use MonSac\DeSportBundle\Form\CommandeType;
 
 /**
- * Product controller.
+ * Commande controller.
  *
  */
-class ProductController extends Controller
+class CommandeController extends Controller
 {
 
     /**
-     * Lists all Product entities.
+     * Lists all Commande entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
+        $entities = $em->getRepository('MonSacDeSportBundle:Commande')->findAll();
 
-        return $this->render('MonSacDeSportBundle:Product:index.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:index.html.twig', array(
             'entities' => $entities,
         ));
     }
-
-    public function indexAdminAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
-
-        return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig');
-    }
-
     /**
-     * Creates a new Product entity.
+     * Creates a new Commande entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Product();
+        $entity = new Commande();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -54,26 +44,26 @@ class ProductController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('product_show', array('slug' => $entity->getSlug(), 'id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('commande_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('MonSacDeSportBundle:Product:new.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Product entity.
+    * Creates a form to create a Commande entity.
     *
-    * @param Product $entity The entity
+    * @param Commande $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Product $entity)
+    private function createCreateForm(Commande $entity)
     {
-        $form = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl('product_create'),
+        $form = $this->createForm(new CommandeType(), $entity, array(
+            'action' => $this->generateUrl('commande_create'),
             'method' => 'POST',
         ));
 
@@ -83,59 +73,59 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a form to create a new Product entity.
+     * Displays a form to create a new Commande entity.
      *
      */
     public function newAction()
     {
-        $entity = new Product();
+        $entity = new Commande();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('MonSacDeSportBundle:Product:new.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Product entity.
+     * Finds and displays a Commande entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MonSacDeSportBundle:Product')->find($id);
+        $entity = $em->getRepository('MonSacDeSportBundle:Commande')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product entity.');
+            throw $this->createNotFoundException('Unable to find Commande entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('MonSacDeSportBundle:Product:show.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to edit an existing Product entity.
+     * Displays a form to edit an existing Commande entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MonSacDeSportBundle:Product')->find($id);
+        $entity = $em->getRepository('MonSacDeSportBundle:Commande')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product entity.');
+            throw $this->createNotFoundException('Unable to find Commande entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('MonSacDeSportBundle:Product:edit.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -143,16 +133,16 @@ class ProductController extends Controller
     }
 
     /**
-    * Creates a form to edit a Product entity.
+    * Creates a form to edit a Commande entity.
     *
-    * @param Product $entity The entity
+    * @param Commande $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Product $entity)
+    private function createEditForm(Commande $entity)
     {
-        $form = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl('_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CommandeType(), $entity, array(
+            'action' => $this->generateUrl('commande_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -161,17 +151,17 @@ class ProductController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Product entity.
+     * Edits an existing Commande entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MonSacDeSportBundle:Product')->find($id);
+        $entity = $em->getRepository('MonSacDeSportBundle:Commande')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Product entity.');
+            throw $this->createNotFoundException('Unable to find Commande entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -181,17 +171,17 @@ class ProductController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('commande_edit', array('id' => $id)));
         }
 
-        return $this->render('MonSacDeSportBundle:Product:edit.html.twig', array(
+        return $this->render('MonSacDeSportBundle:Commande:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Product entity.
+     * Deletes a Commande entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -201,21 +191,21 @@ class ProductController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MonSacDeSportBundle:Product')->find($id);
+            $entity = $em->getRepository('MonSacDeSportBundle:Commande')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Product entity.');
+                throw $this->createNotFoundException('Unable to find Commande entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl(''));
+        return $this->redirect($this->generateUrl('commande'));
     }
 
     /**
-     * Creates a form to delete a Product entity by id.
+     * Creates a form to delete a Commande entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -224,7 +214,7 @@ class ProductController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('commande_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

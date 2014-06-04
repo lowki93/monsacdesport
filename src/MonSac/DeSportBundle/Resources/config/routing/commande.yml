@@ -1,0 +1,31 @@
+commandes:
+    pattern:  /admin/commandes
+    defaults: { _controller: "MonSacDeSportBundle:Commande:index" }
+
+commande_show:
+    pattern:  /commandes/{id}
+    defaults: { _controller: "MonSacDeSportBundle:Commande:show" }
+    requirements: { _method: get }
+
+commande_new:
+    pattern:  /commandes/new
+    defaults: { _controller: "MonSacDeSportBundle:Commande:new" }
+
+commande_create:
+    pattern:  /commandes/create
+    defaults: { _controller: "MonSacDeSportBundle:Commande:create" }
+    requirements: { _method: post }
+
+commande_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MonSacDeSportBundle:Commande:edit" }
+
+commande_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MonSacDeSportBundle:Commande:update" }
+    requirements: { _method: post|put }
+
+commande_delete:
+    pattern:  /commandes/{id}/delete
+    defaults: { _controller: "MonSacDeSportBundle:Commande:delete" }
+    requirements: { _method: post|delete }

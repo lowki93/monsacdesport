@@ -2,6 +2,10 @@ products:
     pattern:  /{page}
     defaults: { _controller: "MonSacDeSportBundle:Product:index", page: "1" }
 
+products_admin:
+    pattern:  /admin/products
+    defaults: { _controller: "MonSacDeSportBundle:Product:indexAdmin" }
+
 product_show:
     pattern:  /articles/{slug}_{id}
     defaults: { _controller: "MonSacDeSportBundle:Product:show" }

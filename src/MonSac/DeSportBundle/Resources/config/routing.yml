@@ -1,3 +1,7 @@
 mon_sac_de_sport_products:
     resource: "@MonSacDeSportBundle/Resources/config/routing/product.yml"
     prefix:   /
+
+mon_sac_de_sport_commandes:
+    resource: "@MonSacDeSportBundle/Resources/config/routing/commande.yml"
+    prefix:   /
