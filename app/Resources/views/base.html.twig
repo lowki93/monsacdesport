@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}
             {% stylesheets
                 'bundles/monsacdesport/css/style.sass'
@@ -11,11 +12,15 @@
             {% endstylesheets %}
         {% endblock %}
 
-        {# <link rel="stylesheet" href="{{ asset('bundles/monsacdesport/css/vendor/foundation.min.css') }}" media="screen" /> #}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
+         {% javascripts
+            'bundles/monsacdesport/jquery/jquery.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
