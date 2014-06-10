@@ -73,7 +73,7 @@ class ProductController extends Controller
     private function createCreateForm(Product $entity)
     {
         $form = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl('product_create'),
+            'action' => $this->generateUrl('admin_product_create'),
             'method' => 'POST',
         ));
 
@@ -152,7 +152,7 @@ class ProductController extends Controller
     private function createEditForm(Product $entity)
     {
         $form = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl('_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('admin_product_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -181,7 +181,7 @@ class ProductController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_product_edit', array('id' => $id)));
         }
 
         return $this->render('MonSacDeSportBundle:Product:edit.html.twig', array(
@@ -224,7 +224,7 @@ class ProductController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_product__delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
