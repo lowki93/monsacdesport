@@ -1,0 +1,16 @@
+front_products:
+    pattern:  /{page}
+    defaults: { _controller: "MonSacDeSportBundle:Product:index", page: "1" }
+
+front_product_show:
+    pattern:  /articles/{slug}_{id}
+    defaults: { _controller: "MonSacDeSportBundle:Product:show" }
+
+front_commande_show:
+    pattern:  /commandes/{id}
+    defaults: { _controller: "MonSacDeSportBundle:Commande:show" }
+    requirements: { _method: get }
+
+front_commande_new:
+    pattern:  /commandes/new
+    defaults: { _controller: "MonSacDeSportBundle:Commande:new" }
