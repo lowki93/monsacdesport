@@ -1,48 +1,49 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <div>
-	    <nav class="top-bar" data-topbar>
+	<div>
+		<nav class="top-bar" data-topbar>
 		  <ul class="title-area">
-		    <li class="name">
-		      <h1><a href="/admin">Mon sac de sport</a></h1>
-		    </li>
-		     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			<li class="name">
+			  <h1><a href="/admin">Mon sac de sport</a></h1>
+			</li>
+			 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 		  </ul>
 
 		  <section class="top-bar-section">
-		    <!-- Right Nav Section -->
-		    <ul class="right">
-		      <li class="active"><a href="#">Quitter</a></li>
-		    </ul>
+			<!-- Right Nav Section -->
+			<ul class="right">
+			  <li class="active"><a href="{{ path('fos_user_security_logout')}}">Déconnexion</a></li>
+			</ul>
 
-		    <!-- Left Nav Section -->
-		    <ul class="left">
-		      <li class="has-dropdown not-click">
-		        <a href="{{ path('admin_products') }}">Articles</a>
-		        <ul class="dropdown">
-		          <li><a href="{{ path('admin_product_new') }}">Nouvel article</a></li>
-		        </ul>
-		      </li>
-		      <li>
-		        <a href="">Comptes client</a>
-		      </li>
-		       <li class="has-dropdown not-click">
-		        <a href="{{ path('admin_commandes') }}">Commandes</a>
-		        <ul class="dropdown">
-		          <li><a href="{{ path('admin_commandes', { status: 1 }) }}">Commandes à valider</a></li>
-		          <li><a href="{{ path('admin_commandes', { status: 2 }) }}">Commandes à expédier</a></li>
-		          <li><a href="{{ path('admin_commandes', { status: 3 }) }}">Commandes expédiées</a></li>
-		        </ul>
-		      </li>
-		    </ul>
+			<!-- Left Nav Section -->
+			<ul class="left">
+			  <li class="has-dropdown not-click">
+				<a href="{{ path('admin_products') }}">Articles</a>
+				<ul class="dropdown">
+				  <li><a href="{{ path('admin_product_new') }}">Nouvel article</a></li>
+				</ul>
+			  </li>
+			  <li>
+				<a href="">Comptes client</a>
+			  </li>
+			   <li class="has-dropdown not-click">
+				<a href="{{ path('admin_commandes') }}">Commandes</a>
+				<ul class="dropdown">
+				  <li><a href="{{ path('admin_commandes', { status: 1 }) }}">Commandes à valider</a></li>
+				  <li><a href="{{ path('admin_commandes', { status: 2 }) }}">Commandes à expédier</a></li>
+				  <li><a href="{{ path('admin_commandes', { status: 3 }) }}">Commandes expédiées</a></li>
+				</ul>
+			  </li>
+			</ul>
 		   
 		  </section>
 		</nav>
 	</div>
-
-    {% block content %}
-    {% endblock %}
+	<div class="large-12 columns">
+		{% block content %}
+		{% endblock %}
+	</div>	
 {% endblock %}
   
