@@ -1,21 +1,21 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1" />
+		<title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block stylesheets %}
-            {% stylesheets
-                'bundles/monsacdesport/css/style.sass'
-                filter="cssrewrite,sass" output='css/style.css' %}
-                   <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
-            {% endstylesheets %}
-        {% endblock %}
+		{% block stylesheets %}
+			{% stylesheets
+				'bundles/monsacdesport/css/style.sass'
+				filter="cssrewrite,sass" output='css/style.css' %}
+				   <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+			{% endstylesheets %}
+		{% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-    	<div>
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	</head>
+	<body>
+		<div>
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 				<li class="name">
@@ -51,7 +51,7 @@
 					</ul>
 				  </li>
 				</ul>
-			   
+
 			  </section>
 			</nav>
 		</div>
@@ -59,11 +59,11 @@
 			{% block content %}
 			{% endblock %}
 		</div>
-        {% javascripts
-            'bundles/monsacdesport/jquery/jquery.js'
-        %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% block javascripts %}{% endblock %}
-    </body>
+		{% javascripts
+			'bundles/monsacdesport/jquery/jquery.js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+		{% block javascripts %}{% endblock %}
+	</body>
 </html>
