@@ -4,8 +4,8 @@ namespace MonSac\DeSportBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use MonSac\DeSportBundle\Entity\Commande;
+use MonSac\DeSportBundle\Entity\CommandeStatus;
 use MonSac\DeSportBundle\Form\CommandeType;
 
 /**
@@ -19,16 +19,25 @@ class CommandeController extends Controller
      * Lists all Commande entities.
      *
      */
-    public function indexAction()
+    public function indexAction($status = CommandeStatus::ALL)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MonSacDeSportBundle:Commande')->findAll();
+        if (CommandeStatus::ALL == $status) {
+            $entities = $em->getRepository('MonSacDeSportBundle:Commande')->findAll();
+        } else {
+                $entities = $em->getRepository('MonSacDeSportBundle:Commande')
+                    ->createQueryBuilder('c')
+                    ->where('c.status = :status')
+                    ->setParameter('status', $status)
+                    ->getQuery()->getResult();
+        }
 
         return $this->render('MonSacDeSportBundle:Commande:index.html.twig', array(
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Commande entity.
      *

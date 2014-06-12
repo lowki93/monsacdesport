@@ -1,9 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-    
-{% endblock %}
-
 {% block body %}
     <div>
 	    <nav class="top-bar" data-topbar>
@@ -24,20 +20,20 @@
 		    <!-- Left Nav Section -->
 		    <ul class="left">
 		      <li class="has-dropdown not-click">
-		        <a href="{{ path('products_admin') }}">Articles</a>
+		        <a href="{{ path('admin_products') }}">Articles</a>
 		        <ul class="dropdown">
-		          <li><a href="{{ path('product_new') }}">Nouvel article</a></li>
+		          <li><a href="{{ path('admin_product_new') }}">Nouvel article</a></li>
 		        </ul>
 		      </li>
 		      <li>
 		        <a href="">Comptes client</a>
 		      </li>
 		       <li class="has-dropdown not-click">
-		        <a href="">Commandes</a>
+		        <a href="{{ path('admin_commandes') }}">Commandes</a>
 		        <ul class="dropdown">
-		          <li><a href="">Commandes à valider</a></li>
-		          <li><a href="">Commandes à expédier</a></li>
-		          <li><a href="">Commandes expédiées</a></li>
+		          <li><a href="{{ path('admin_commandes', { status: 1 }) }}">Commandes à valider</a></li>
+		          <li><a href="{{ path('admin_commandes', { status: 2 }) }}">Commandes à expédier</a></li>
+		          <li><a href="{{ path('admin_commandes', { status: 3 }) }}">Commandes expédiées</a></li>
 		        </ul>
 		      </li>
 		    </ul>

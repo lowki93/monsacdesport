@@ -1,0 +1,32 @@
+admin_products:
+    pattern:  /products
+    defaults: { _controller: "MonSacDeSportBundle:Product:indexAdmin" }
+
+admin_product_new:
+    pattern:  /products/new
+    defaults: { _controller: "MonSacDeSportBundle:Product:new" }
+
+admin_product_create:
+    pattern:  /products/create
+    defaults: { _controller: "MonSacDeSportBundle:Product:create" }
+    requirements: { _method: post }
+
+admin_product_edit:
+    pattern:  /products/{id}/edit
+    defaults: { _controller: "MonSacDeSportBundle:Product:edit" }
+
+admin_product_update:
+    pattern:  /products/{id}/update
+    defaults: { _controller: "MonSacDeSportBundle:Product:update" }
+    requirements: { _method: post|put }
+
+admin_product_delete:
+    pattern:  /products/{id}/delete
+    defaults: { _controller: "MonSacDeSportBundle:Product:delete" }
+    requirements: { _method: post|delete }
+
+admin_commandes:
+    pattern:  /commandes/{status}
+    defaults: { _controller: "MonSacDeSportBundle:Commande:index", status: 0 }
+    requirements:
+        status: '[0-4]'
