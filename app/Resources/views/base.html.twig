@@ -6,7 +6,7 @@
 
         {% block stylesheets %}
             {% stylesheets
-                'bundles/monsacdesport/css/style.sass'
+                '@MonSacDeSportBundle/Resources/public/css/style.sass'
                 filter="cssrewrite,sass" output='css/style.css' %}
                    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
             {% endstylesheets %}
