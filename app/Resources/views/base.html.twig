@@ -15,8 +15,17 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-         {% javascripts
+        <div class="large-12 columns">
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{path('admin_products')}}">Go to admin</a><br />
+                <a href="{{ path('fos_user_security_logout')}}">Déconnexion</a>
+            {% else %}
+                <a href="{{path('fos_user_security_login')}}">Connexion</a><br />
+                <a href="{{path('fos_user_registration_register')}}">Inscription</a>
+            {% endif %}
+            {% block body %}{% endblock %}
+        </div>
+        {% javascripts
             'bundles/monsacdesport/jquery/jquery.js'
         %}
         <script src="{{ asset_url }}"></script>
