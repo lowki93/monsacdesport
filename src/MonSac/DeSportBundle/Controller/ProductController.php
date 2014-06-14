@@ -36,7 +36,9 @@ class ProductController extends Controller
 
         $entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
 
-        return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig');
+        return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
+            'products' => $entities,
+        ));
     }
 
     /**
@@ -54,7 +56,9 @@ class ProductController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('product_show', array('slug' => $entity->getSlug(), 'id' => $entity->getId())));
+            $this->get('session')->getFlashBag()->add('info', 'Le produit a bien été enregistré');
+
+            return $this->redirect($this->generateUrl('admin_products'));
         }
 
         return $this->render('MonSacDeSportBundle:Product:new.html.twig', array(
@@ -137,7 +141,7 @@ class ProductController extends Controller
 
         return $this->render('MonSacDeSportBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -186,7 +190,7 @@ class ProductController extends Controller
 
         return $this->render('MonSacDeSportBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -224,7 +228,7 @@ class ProductController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_product__delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_product_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

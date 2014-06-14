@@ -1,16 +1,27 @@
-{% extends '::base.html.twig' %}
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
 
-{% block body -%}
-    <h1>Modifier un article</h1>
+{% block content %}
+     <h1>Modifier un article</h1>
 
-    {{ form(edit_form) }}
+    {{ form_start(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    	{{ form_row(form.name) }}
+    	{{ form_row(form.description) }}
+    	{{ form_row(form.price) }}
+    	{{ form_row(form.brand) }}
+    	{{ form_row(form.size) }}
+    	{{ form_row(form.quantity) }}
+
+    	<ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" >
+    		{% for image in entity.images %}
+    		    <li><img style="max-width: 200px; max-height: 200px;" src="{{ asset(image.webPath) }}" /></li>
+    		{% endfor %}
+    		
+    	</ul>
+
+    	{{ form_row(form._token) }}
+
+    	<button type="submit">Valider</button>
+    </form>
+
 {% endblock %}

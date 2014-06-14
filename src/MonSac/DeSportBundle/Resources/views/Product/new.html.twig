@@ -10,6 +10,13 @@
     	{{ form_row(form.price) }}
     	{{ form_row(form.brand) }}
     	{{ form_row(form.size) }}
+    	{{ form_row(form.quantity) }}
+
+    	<ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" >
+    		{% for image in form.images %}
+    		    <li>{{ form_row(image.file) }}</li>
+    		{% endfor %}
+    	</ul>
 
     	{{ form_row(form._token) }}
 

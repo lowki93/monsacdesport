@@ -20,6 +20,8 @@ class ProductType extends AbstractType
             ->add('price', 'number', array('label' => 'Prix'))
             ->add('brand', 'text', array('label' => 'Marque'))
             ->add('size', 'text', array('label' => 'Taille'))
+            ->add('quantity', 'number', array('label' => 'Quantité en stock'))
+            ->add('images', 'collection', array('type' => new ImageType(), 'allow_add' => true))
         ;
     }
     

@@ -3,5 +3,38 @@
 {% block content %}
     <h1>Articles</h1>
 
-    
+    <form action="{{ path('admin_product_search') }}" method="get">
+    	<input class="left" style="width: 75%" type="text" name="s" placeholder="Rechercher un article..." /> <button class="small right" type="submit">Rechercher</button>
+    </form>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>#ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Marque</th>
+                <th>Taille</th>
+                <th>Prix</th>
+                <th>Quantité en stock</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for product in products %}
+                <tr>
+                	<td>{{ product.id }}</td>
+	                <td>{{ product.name }}</td>
+	                <td>{{ product.description }}</td>
+	                <td>{{ product.brand }}</td>
+	                <td>{{ product.size }}</td>
+	                <td>{{ product.price }}</td>
+	                <td>{{ product.quantity }}</td>
+	                <td>
+	                	<a class="button small" href="{{ path('admin_product_edit', { 'id' : product.id }) }}">Modifier</a>
+	                	<a class="button small" href="{{ path('front_product_show', { 'id' : product.id, 'slug' : product.slug }) }}">Voir sur le site</a>
+	                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
