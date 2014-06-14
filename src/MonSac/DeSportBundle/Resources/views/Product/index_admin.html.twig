@@ -7,6 +7,8 @@
     	<input class="left" style="width: 75%" type="text" name="s" placeholder="Rechercher un article..." /> <button class="small right" type="submit">Rechercher</button>
     </form>
 
+    {% if products is not empty %}
+
     <table class="record_properties">
         <tbody>
             <tr>
@@ -21,7 +23,7 @@
             </tr>
 
             {% for product in products %}
-                <tr>
+                <tr {% if product.quantity == 0 %}class="soldout"{% endif %}>
                 	<td>{{ product.id }}</td>
 	                <td>{{ product.name }}</td>
 	                <td>{{ product.description }}</td>
@@ -37,4 +39,13 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% else %}
+        
+        <div>
+        <p>Aucun produit a afficher</p>
+        </div>
+
+    {% endif %}
+
 {% endblock %}

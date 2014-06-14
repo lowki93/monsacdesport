@@ -27,7 +27,7 @@ admin_product_delete:
 
 admin_product_search:
     pattern:  /products/search
-    defaults:  { _controller: MonSacDeSportBundle:Product:search }
+    defaults:  { _controller: MonSacDeSportBundle:Product:searchAdmin }
     requirements: { _method: get }
 
 admin_commandes:
@@ -35,3 +35,11 @@ admin_commandes:
     defaults: { _controller: "MonSacDeSportBundle:Commande:index", status: 0 }
     requirements:
         status: '[0-4]'
+
+admin_users:
+    pattern:  /comptes-client
+    defaults:  { _controller: MonSacDeSportBundle:User:index }
+
+admin_user_commandes:
+    pattern:  /comptes-client/{id}/commandes
+    defaults: { _controller: MonSacDeSportBundle:User:commandes }

@@ -41,6 +41,21 @@ class ProductController extends Controller
         ));
     }
 
+    public function searchAdminAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $search = strtolower($request->get('s'));
+
+        $result = $em->createQuery('SELECT p FROM MonSacDeSportBundle:Product p WHERE LOWER(p.name) LIKE :nom OR LOWER(p.description) LIKE :description')
+                        ->setParameter('nom', '%'.$search.'%')
+                        ->setParameter('description', '%'.$search.'%')
+                        ->getResult();
+
+        return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
+            'products' => $result,
+        ));
+    }
+
     /**
      * Creates a new Product entity.
      *

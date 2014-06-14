@@ -19,37 +19,37 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="text", name="first_name", length=255)
+     * @ORM\Column(type="text", name="first_name", length=255, nullable=true)
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="text", name="last_name", length=255)
+     * @ORM\Column(type="text", name="last_name", length=255, nullable=true)
      */
     protected $lastName;
 
     /**
-     * @ORM\Column(type="text", name="address", length=255)
+     * @ORM\Column(type="text", name="address", length=255, nullable=true)
      */
     protected $address;
 
     /**
-     * @ORM\Column(type="text", name="zipcode", length=10)
+     * @ORM\Column(type="text", name="zipcode", length=10, nullable=true)
      */
     protected $zipcode;
 
     /**
-     * @ORM\Column(type="text", name="city", length=255)
+     * @ORM\Column(type="text", name="city", length=255, nullable=true)
      */
     protected $city;
 
     /**
-     * @ORM\Column(type="text", name="phone", length=15)
+     * @ORM\Column(type="text", name="phone", length=15, nullable=true)
      */
     protected $phone;
 
     /**
-     * @ORM\Column(type="text", name="complementary_info")
+     * @ORM\Column(type="text", name="complementary_info", nullable=true)
      */
     protected $complementary_info;
 

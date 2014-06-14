@@ -1,0 +1,45 @@
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
+
+{% block content %}
+    <h1>Comptes clients</h1>
+
+   
+
+    {% if users is not empty %}
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>N° client</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Adresse</th>
+                <th>Adresse e-mail</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for user in users %}
+                <tr>
+                	<td>{{ user.id }}</td>
+	                <td>{{ user.lastName }}</td>
+	                <td>{{ user.firstName }}</td>
+	                <td>{{ user.address}}<br>{{ user.zipcode }} {{ user.city }}</td>
+	                <td>{{ user.email }}</td>
+	                <td>{{ user.phone }}</td>
+	                <td>
+	                	<a class="button small" href="{{ path('admin_user_commandes', { id: user.id }) }}">Voir les commandes</a>
+	                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        
+        <div>
+        <p>Aucun compte a afficher</p>
+        </div>
+
+    {% endif %}
+{% endblock %}
