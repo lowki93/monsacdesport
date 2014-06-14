@@ -42,6 +42,16 @@ class Commande
      */
     private $sentAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
+     */
+    protected $customer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="commandes")
+     */
+    protected $products;
+
 
     /**
      * Get id
@@ -120,5 +130,68 @@ class Commande
     public function getSentAt()
     {
         return $this->sentAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \MonSac\DeSportBundle\Entity\User $customer
+     * @return Commande
+     */
+    public function setCustomer(\MonSac\DeSportBundle\Entity\User $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \MonSac\DeSportBundle\Entity\User 
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Add products
+     *
+     * @param \MonSac\DeSportBundle\Entity\Product $products
+     * @return Commande
+     */
+    public function addProduct(\MonSac\DeSportBundle\Entity\Product $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param \MonSac\DeSportBundle\Entity\Product $products
+     */
+    public function removeProduct(\MonSac\DeSportBundle\Entity\Product $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

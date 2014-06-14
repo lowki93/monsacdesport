@@ -91,6 +91,11 @@ class Product
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="products")
+     */
+    protected $commandes;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -348,5 +353,38 @@ class Product
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Add commandes
+     *
+     * @param \MonSac\DeSportBundle\Entity\Commande $commandes
+     * @return Product
+     */
+    public function addCommande(\MonSac\DeSportBundle\Entity\Commande $commandes)
+    {
+        $this->commandes[] = $commandes;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandes
+     *
+     * @param \MonSac\DeSportBundle\Entity\Commande $commandes
+     */
+    public function removeCommande(\MonSac\DeSportBundle\Entity\Commande $commandes)
+    {
+        $this->commandes->removeElement($commandes);
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
     }
 }

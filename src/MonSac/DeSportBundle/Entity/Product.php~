@@ -87,9 +87,14 @@ class Product
     private $size;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist","remove"})
      */
     private $images;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Commande", inversedBy="products")
+     */
+    protected $commandes;
 
     public function __construct()
     {
