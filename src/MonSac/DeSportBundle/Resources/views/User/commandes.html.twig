@@ -1,0 +1,43 @@
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
+
+{% block content %}
+	<h1>{{ user.firstName }} {{ user.lastName }}</h1>
+
+    {% if user.commandes is not empty %}
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>N° commande</th>
+                <th>Produits</th>
+                
+                <th>Actions</th>
+            </tr>
+
+            {% for commande in user.commandes %}
+                <tr>
+                	<td>{{ commande.numCommande }}</td>
+	                <td>
+	                	<ul>
+	                	{% for product in commande.products %}
+	                	    <li>{{ product.name }}</li>
+	                	{% endfor %}
+	                	</ul>
+	                </td>
+	                
+	                <td>
+	                	<a class="button small" href="{{ path('admin_user_commandes', { id: user.id }) }}">Voir les commandes</a>
+	                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        
+        <div>
+        <p>Aucune commande à afficher</p>
+        </div>
+
+    {% endif %}
+{% endblock %}

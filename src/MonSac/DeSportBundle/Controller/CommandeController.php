@@ -114,9 +114,41 @@ class CommandeController extends Controller
 
         return $this->render('MonSacDeSportBundle:Commande:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
+    public function adminShowAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('MonSacDeSportBundle:Commande')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Commande entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('MonSacDeSportBundle:Commande:admin_show.html.twig', array(
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    public function updateStatusAction(Request $request)
+    {
+        $status = $request->get('status', 0);
+
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository('MonSacDeSportBundle:Commande')->find($request->get('id'));
+
+        $commande->setStatus($status);
+        $em->persist($commande);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_commandes'));
+    }
     /**
      * Displays a form to edit an existing Commande entity.
      *

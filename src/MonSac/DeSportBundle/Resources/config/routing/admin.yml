@@ -31,10 +31,23 @@ admin_product_search:
     requirements: { _method: get }
 
 admin_commandes:
-    pattern:  /commandes/{status}
+    pattern:  /commandes/status-{status}
     defaults: { _controller: "MonSacDeSportBundle:Commande:index", status: 0 }
     requirements:
         status: '[0-4]'
+
+admin_commande_show:
+    pattern: /commandes/{id}
+    defaults: { _controller: MonSacDeSportBundle:Commande:adminShow }
+    requirements:
+        id: \d+
+
+admin_commande_update_status:
+    pattern: /commandes/{id}/update-status
+    defaults: { _controller: MonSacDeSportBundle:Commande:updateStatus }
+    requirements:
+        id: \d+
+        _method: post|put
 
 admin_users:
     pattern:  /comptes-client
@@ -42,4 +55,4 @@ admin_users:
 
 admin_user_commandes:
     pattern:  /comptes-client/{id}/commandes
-    defaults: { _controller: MonSacDeSportBundle:User:commandes }
+    defaults:  { _controller: MonSacDeSportBundle:User:commandes }

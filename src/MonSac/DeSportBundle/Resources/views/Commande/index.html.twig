@@ -1,7 +1,7 @@
 {% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
 
 {% block content %}
-    <h1>Commande list</h1>
+    <h1>Commandes</h1>
 
     <table class="records_list">
         <thead>
@@ -14,19 +14,26 @@
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
+            <tr {% if entity.status > 2 %}class="green"{% endif %}>
                 <td><a href="{{ path('admin_commande_show', { 'id': entity.id }) }}">{{ entity.numCommande }}</a></td>
-                <td>{{ entity.status }}</td>
+                <td>
+                    {% if entity.status == 1 %}En attente de validation{% endif %}
+                    {% if entity.status == 2 %}Validée{% endif %}
+                    {% if entity.status == 3 %}Expédiée{% endif %}
+                    {% if entity.status == 4 %}Finalisée{% endif %}
+                </td>
                 <td>{% if entity.sentAt %}{{ entity.sentAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_commande_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_commande_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                     <a class="button small" href="{{ path('admin_commande_show', { 'id': entity.id }) }}">Détails</a>
+                     <form class="right" action="{{ path('admin_commande_update_status', { id: entity.id }) }}" method="post">
+                        Modifier le statut : 
+                        <select name="status" onchange="$(this).parents('form').submit()">
+                            <option> </option>
+                            <option value="2">Validée</option>
+                            <option value="3">Expédiée</option>
+                            <option value="4">Finalisée</option>
+                        </select>
+                     </form>
                 </td>
             </tr>
         {% endfor %}

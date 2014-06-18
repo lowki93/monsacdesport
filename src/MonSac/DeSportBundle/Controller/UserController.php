@@ -20,16 +20,14 @@ class UserController extends Controller
 
     public function commandesAction($id)
     {
-    	$user = $this->getRepository('MonSacDeSportBundle:User')->find($id);
+    	$user = $this->getDoctrine()->getRepository('MonSacDeSportBundle:User')->find($id);
 
     	if (!$user) {
     		throw $this->createNotFoundException('Utilisateur inexistant.');
     	}
 
-    	$commandes = $user->getCommandes();
-
         return $this->render('MonSacDeSportBundle:User:commandes.html.twig', array(
-        	'commandes' => $commandes,
+            'user' => $user,
         ));
     }
 }

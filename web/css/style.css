@@ -5755,3 +5755,21 @@ th.hide-for-touch {
 
 .admin-panel form {
   width: 600px; }
+  .admin-panel form ul.images {
+    margin-left: 0; }
+    .admin-panel form ul.images li {
+      display: block;
+      margin-left: 0;
+      background: #eeeeee;
+      padding: 12px;
+      list-style-type: none; }
+.admin-panel table {
+  width: 98%; }
+  .admin-panel table tr {
+    height: 30px; }
+    .admin-panel table tr .button {
+      display: inline-block;
+      position: relative;
+      top: 10px; }
+  .admin-panel table tr.soldout {
+    background: #eeaaaa; }

@@ -218,7 +218,7 @@ class User extends BaseUser
      * @param \textarea $complementaryInfo
      * @return User
      */
-    public function setComplementaryInfo(\textarea $complementaryInfo)
+    public function setComplementaryInfo($complementaryInfo)
     {
         $this->complementary_info = $complementaryInfo;
 

@@ -45,7 +45,7 @@ class Commande
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="commandes")
      */
-    protected $customer;
+    protected $owner;
 
     /**
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="commandes")
@@ -193,5 +193,28 @@ class Commande
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \MonSac\DeSportBundle\Entity\User $owner
+     * @return Commande
+     */
+    public function setOwner(\MonSac\DeSportBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \MonSac\DeSportBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }
