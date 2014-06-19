@@ -96,6 +96,11 @@ class Product
      */
     protected $commandes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="products")
+     */
+    protected $productCategory;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -386,5 +391,28 @@ class Product
     public function getCommandes()
     {
         return $this->commandes;
+    }
+
+    /**
+     * Set productCategory
+     *
+     * @param \MonSac\DeSportBundle\Entity\ProductCategory $productCategory
+     * @return Product
+     */
+    public function setProductCategory(\MonSac\DeSportBundle\Entity\ProductCategory $productCategory = null)
+    {
+        $this->productCategory = $productCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get productCategory
+     *
+     * @return \MonSac\DeSportBundle\Entity\ProductCategory 
+     */
+    public function getProductCategory()
+    {
+        return $this->productCategory;
     }
 }

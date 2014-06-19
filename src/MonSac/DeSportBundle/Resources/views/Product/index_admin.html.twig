@@ -9,42 +9,41 @@
 
     {% if products is not empty %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>#ID</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Marque</th>
-                <th>Taille</th>
-                <th>Prix</th>
-                <th>Quantité en stock</th>
-                <th>Actions</th>
-            </tr>
-
-            {% for product in products %}
-                <tr {% if product.quantity == 0 %}class="soldout"{% endif %}>
-                	<td>{{ product.id }}</td>
-	                <td>{{ product.name }}</td>
-	                <td>{{ product.description }}</td>
-	                <td>{{ product.brand }}</td>
-	                <td>{{ product.size }}</td>
-	                <td>{{ product.price }}</td>
-	                <td>{{ product.quantity }}</td>
-	                <td>
-	                	<a class="button small" href="{{ path('admin_product_edit', { 'id' : product.id }) }}">Modifier</a>
-	                	<a class="button small" href="{{ path('front_product_show', { 'id' : product.id, 'slug' : product.slug }) }}">Voir sur le site</a>
-	                </td>
+        <table class="record_properties">
+            <tbody>
+                <tr>
+                    <th>#ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Marque</th>
+                    <th>Taille</th>
+                    <th>Prix</th>
+                    <th>Quantité en stock</th>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+                {% for product in products %}
+                    <tr {% if product.quantity == 0 %}class="soldout"{% endif %}>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.brand }}</td>
+                        <td>{{ product.size }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>
+                            <a class="button small" href="{{ path('admin_product_edit', { 'id' : product.id }) }}">Modifier</a>
+                            <a class="button small" href="{{ path('front_product_show', { 'id' : product.id, 'slug' : product.slug }) }}">Voir sur le site</a>
+                           {#<a class="button alert" href="{{ path('admin_product_delete', { 'id' : product.id }) }}">Supprimer</a>#}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
     {% else %}
-        
-        <div>
+
         <p>Aucun produit a afficher</p>
-        </div>
 
     {% endif %}
 
