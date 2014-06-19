@@ -1,0 +1,30 @@
+productcategory:
+    pattern:  /
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:index" }
+
+productcategory_show:
+    pattern:  /{slug}/show
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:show" }
+
+productcategory_new:
+    pattern:  /new
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:new" }
+
+productcategory_create:
+    pattern:  /create
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:create" }
+    requirements: { _method: post }
+
+productcategory_edit:
+    pattern:  /{slug}/edit
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:edit" }
+
+productcategory_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:update" }
+    requirements: { _method: post|put }
+
+productcategory_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MonSacDeSportBundle:ProductCategory:delete" }
+    requirements: { _method: post|delete }

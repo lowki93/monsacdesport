@@ -3,6 +3,7 @@
 namespace MonSac\DeSportBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Behavior;
 
 /**
  * ProductCategory
@@ -29,12 +30,15 @@ class ProductCategory
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
+     * @Behavior\Slug(fields={"name"})
+     * @ORM\Column(length=128, unique=true)
      */
-    private $description;
+    private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="$productCategory")
+     */
+    protected $products;
 
     /**
      * Get id
@@ -70,25 +74,65 @@ class ProductCategory
     }
 
     /**
-     * Set description
+     * Set slug
      *
-     * @param string $description
+     * @param string $slug
      * @return ProductCategory
      */
-    public function setDescription($description)
+    public function setSlug($slug)
     {
-        $this->description = $description;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get slug
      *
      * @return string 
      */
-    public function getDescription()
+    public function getSlug()
     {
-        return $this->description;
+        return $this->slug;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add products
+     *
+     * @param \MonSac\DeSportBundle\Entity\Products $products
+     * @return ProductCategory
+     */
+    public function addProduct(\MonSac\DeSportBundle\Entity\Product $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param \MonSac\DeSportBundle\Entity\Products $products
+     */
+    public function removeProduct(\MonSac\DeSportBundle\Entity\Product $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

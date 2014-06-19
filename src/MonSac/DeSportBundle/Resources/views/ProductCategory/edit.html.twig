@@ -1,0 +1,15 @@
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
+
+{% block content -%}
+
+    <h1>Modifier la catégorie</h1>
+
+    {{ form_start(edit_form) }}
+
+        {{ form_row(edit_form.name) }}
+        {{ form_row(edit_form._token) }}
+
+        <button type="submit">Valider</button>
+    </form>
+
+{% endblock %}

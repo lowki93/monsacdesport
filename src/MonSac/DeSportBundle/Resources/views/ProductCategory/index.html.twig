@@ -1,0 +1,36 @@
+{% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
+
+{% block content -%}
+
+    <h1>Catégorie</h1>
+
+    {% if productsCategory is not empty %}
+
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in productsCategory %}
+                <tr>
+                    <td>{{ entity.name }}</td>
+                    <td>
+                        <a class="button small" href="{{ path('productcategory_edit', { 'slug' : entity.slug }) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <p>Aucun produit a afficher</p>
+
+    {% endif %}
+
+        <a class="button small" href="{{ path('productcategory_new') }}">Nouvelle catégorie</a>
+
+{% endblock %}
