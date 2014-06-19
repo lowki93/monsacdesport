@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+
+    public function search($search)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->where("LOWER(p.name) LIKE :search")
+            ->where("LOWER(p.description) LIKE :search")
+            ->setParameter('search', '%'.$search.'%');
+
+        return $products = $qb->getQuery()->getResult();
+    }
 }

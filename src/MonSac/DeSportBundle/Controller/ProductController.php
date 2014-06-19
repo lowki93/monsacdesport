@@ -46,10 +46,7 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $search = strtolower($request->get('s'));
 
-        $result = $em->createQuery('SELECT p FROM MonSacDeSportBundle:Product p WHERE LOWER(p.name) LIKE :nom OR LOWER(p.description) LIKE :description')
-                        ->setParameter('nom', '%'.$search.'%')
-                        ->setParameter('description', '%'.$search.'%')
-                        ->getResult();
+        $result = $em->getRepository('MonSacDeSportBundle:Product')->search($search);
 
         return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
             'products' => $result,
