@@ -1,34 +1,10 @@
-admin_products:
-    pattern:  /products
-    defaults: { _controller: "MonSacDeSportBundle:Product:indexAdmin" }
+MonSacDeSportBundle_products:
+    resource: "@MonSacDeSportBundle/Resources/config/routing/products.yml"
+    prefix:   /products
 
-admin_product_new:
-    pattern:  /products/new
-    defaults: { _controller: "MonSacDeSportBundle:Product:new" }
-
-admin_product_create:
-    pattern:  /products/create
-    defaults: { _controller: "MonSacDeSportBundle:Product:create" }
-    requirements: { _method: post }
-
-admin_product_edit:
-    pattern:  /products/{id}/edit
-    defaults: { _controller: "MonSacDeSportBundle:Product:edit" }
-
-admin_product_update:
-    pattern:  /products/{id}/update
-    defaults: { _controller: "MonSacDeSportBundle:Product:update" }
-    requirements: { _method: post|put }
-
-admin_product_delete:
-    pattern:  /products/{id}/delete
-    defaults: { _controller: "MonSacDeSportBundle:Product:delete" }
-    requirements: { _method: post|delete }
-
-admin_product_search:
-    pattern:  /products/search
-    defaults:  { _controller: MonSacDeSportBundle:Product:searchAdmin }
-    requirements: { _method: get }
+MonSacDeSportBundle_productcategory:
+    resource: "@MonSacDeSportBundle/Resources/config/routing/productcategory.yml"
+    prefix:   /productcategory
 
 admin_commandes:
     pattern:  /commandes/status-{status}
