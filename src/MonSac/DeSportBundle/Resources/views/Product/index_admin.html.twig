@@ -13,6 +13,7 @@
             <tbody>
                 <tr>
                     <th>#ID</th>
+                    <th>Catégorie</th>
                     <th>Nom</th>
                     <th>Description</th>
                     <th>Marque</th>
@@ -25,6 +26,7 @@
                 {% for product in products %}
                     <tr {% if product.quantity == 0 %}class="soldout"{% endif %}>
                         <td>{{ product.id }}</td>
+                        <td>{{ product.productCategory.name }}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.description }}</td>
                         <td>{{ product.brand }}</td>
