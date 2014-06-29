@@ -1,3 +1,7 @@
+front_products:
+    pattern:  /{page}
+    defaults: { _controller: "MonSacDeSportBundle:Product:index", page: "1" }
+
 mon_sac_de_sport_articles:
     resource: "@MonSacDeSportBundle/Resources/config/routing/articles.yml"
     prefix:   /articles

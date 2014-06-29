@@ -2,10 +2,6 @@ front_category_product:
     pattern: /{productCategorySlug}
     defaults: { _controller: "MonSacDeSportBundle:Product:productByCategory" }
 
-front_products:
-    pattern:  /{page}
-    defaults: { _controller: "MonSacDeSportBundle:Product:index", page: "1" }
-
 front_product_show:
     pattern:  /{productCategorySlug}/{productSlug}
     defaults: { _controller: "MonSacDeSportBundle:Product:show" }
