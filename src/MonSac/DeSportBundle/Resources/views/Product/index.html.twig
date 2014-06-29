@@ -1,7 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Product list</h1>
+    <h2>List of category product</h2>
 
-    
+    {% for productCategory in productCategories %}
+        <a href="{{ path('front_category_product', {"productCategorySlug": productCategory.slug }) }}">{{ productCategory.name }}</a>
+    {% endfor %}
+
 {% endblock %}

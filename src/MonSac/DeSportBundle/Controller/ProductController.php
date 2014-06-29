@@ -23,10 +23,12 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
+        //$entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
+
+        $productCategories = $em->getRepository('MonSacDeSportBundle:ProductCategory')->findAll();
 
         return $this->render('MonSacDeSportBundle:Product:index.html.twig', array(
-            'entities' => $entities,
+            'productCategories' => $productCategories,
         ));
     }
 
@@ -245,5 +247,18 @@ class ProductController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function productByCategoryAction($productCategorySlug)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productCategory = $em->getRepository('MonSacDeSportBundle:ProductCategory')->findOneBySlug($productCategorySlug);
+        $products = $em->getRepository('MonSacDeSportBundle:Product')->findByProductCategory($productCategory->getId());
+
+        return $this->render('MonSacDeSportBundle:Product:productByCategory.html.twig', array(
+                'products' => $products,
+                'productCategory' => $productCategorySlug
+            ));
     }
 }

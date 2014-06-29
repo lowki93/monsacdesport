@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h2>List of product in {{ productCategory }}</h2>
+
+    {% if products is not empty %}
+
+        <table class="record_properties">
+            <tbody>
+            <tr>
+                <th>#ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Marque</th>
+                <th>Taille</th>
+                <th>Prix</th>
+                <th>Quantité en stock</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for product in products %}
+                <tr {% if product.quantity == 0 %}class="soldout"{% endif %}>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.size }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                        <a class="button small" href="{{ path('front_product_show', {'productCategorySlug': product.productCategory.slug,  'productSlug' : product.slug }) }}">Voir sur le site</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <p>Aucun produit a afficher</p>
+
+    {% endif %}
+
+{% endblock %}
