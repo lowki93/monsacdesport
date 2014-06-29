@@ -1,10 +1,6 @@
-front_products:
-    pattern:  /{page}
-    defaults: { _controller: "MonSacDeSportBundle:Product:index", page: "1" }
-
-front_product_show:
-    pattern:  /articles/{slug}_{id}
-    defaults: { _controller: "MonSacDeSportBundle:Product:show" }
+mon_sac_de_sport_articles:
+    resource: "@MonSacDeSportBundle/Resources/config/routing/articles.yml"
+    prefix:   /articles
 
 front_commande_show:
     pattern:  /commandes/{id}
