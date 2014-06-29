@@ -36,7 +36,7 @@ class ProductCategory
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="$productCategory")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="productCategory")
      */
     protected $products;
 
