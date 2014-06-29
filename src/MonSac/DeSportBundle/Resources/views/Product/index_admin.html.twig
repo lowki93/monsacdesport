@@ -33,7 +33,7 @@
                         <td>{{ product.quantity }}</td>
                         <td>
                             <a class="button small" href="{{ path('admin_product_edit', { 'id' : product.id }) }}">Modifier</a>
-                            <a class="button small" href="{{ path('front_product_show', { 'id' : product.id, 'slug' : product.slug }) }}">Voir sur le site</a>
+                            <a class="button small" href="{{ path('front_product_show', { 'productCategorySlug' : product.productCategory.slug, 'productSlug' : product.slug }) }}">Voir sur le site</a>
                            {#<a class="button alert" href="{{ path('admin_product_delete', { 'id' : product.id }) }}">Supprimer</a>#}
                         </td>
                     </tr>

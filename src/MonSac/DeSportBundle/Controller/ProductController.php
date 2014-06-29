@@ -119,17 +119,17 @@ class ProductController extends Controller
      * Finds and displays a Product entity.
      *
      */
-    public function showAction($id)
+    public function showAction($productSlug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MonSacDeSportBundle:Product')->find($id);
+        $entity = $em->getRepository('MonSacDeSportBundle:Product')->findOneBySlug($productSlug);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return $this->render('MonSacDeSportBundle:Product:show.html.twig', array(
             'entity'      => $entity,
