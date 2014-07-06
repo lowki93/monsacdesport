@@ -197,6 +197,12 @@ class ProductController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+            foreach($entity->getImages() as $image) {
+                $image->setProduct($entity);
+                $em->persist($image);
+            }
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_product_edit', array('id' => $id)));
