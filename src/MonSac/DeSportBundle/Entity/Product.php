@@ -87,7 +87,7 @@ class Product
     private $size;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"all"})
      */
     private $images;
 
