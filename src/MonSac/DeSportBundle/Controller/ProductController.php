@@ -23,8 +23,6 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
-
         $productCategories = $em->getRepository('MonSacDeSportBundle:ProductCategory')->findAll();
 
         return $this->render('MonSacDeSportBundle:Product:index.html.twig', array(
@@ -38,12 +36,7 @@ class ProductController extends Controller
 
         $query = $em->getRepository('MonSacDeSportBundle:Product')->paginationQuery();
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query,
-            $page,
-            1
-        );
+        $pagination = $this->pagination($query,$page,1);
 
         return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
             'products' => $pagination,
@@ -56,14 +49,9 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $search = strtolower($request->get('s'));
 
-        $result = $em->getRepository('MonSacDeSportBundle:Product')->search($search);
+        $query = $em->getRepository('MonSacDeSportBundle:Product')->search($search);
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $result,
-            $page,
-            1
-        );
+        $pagination = $this->pagination($query, $page, 1);
 
         return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
             'products' => $pagination,
@@ -282,5 +270,18 @@ class ProductController extends Controller
                 'products' => $products,
                 'productCategory' => $productCategorySlug
             ));
+    }
+
+    /* Paginate function */
+    private function pagination($query, $page, $maxLimit)
+    {
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $page,
+            $maxLimit
+        );
+
+        return $pagination;
     }
 }
