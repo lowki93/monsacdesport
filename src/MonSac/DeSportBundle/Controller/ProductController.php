@@ -32,26 +32,42 @@ class ProductController extends Controller
         ));
     }
 
-    public function indexAdminAction(Request $request)
+    public function indexAdminAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MonSacDeSportBundle:Product')->findAll();
+        $query = $em->getRepository('MonSacDeSportBundle:Product')->paginationQuery();
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $page,
+            1
+        );
 
         return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
-            'products' => $entities,
+            'products' => $pagination,
+            'pagination' => $pagination
         ));
     }
 
-    public function searchAdminAction(Request $request)
+    public function searchAdminAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
         $search = strtolower($request->get('s'));
 
         $result = $em->getRepository('MonSacDeSportBundle:Product')->search($search);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $result,
+            $page,
+            1
+        );
+
         return $this->render('MonSacDeSportBundle:Product:index_admin.html.twig', array(
-            'products' => $result,
+            'products' => $pagination,
+            'pagination' => $pagination
         ));
     }
 

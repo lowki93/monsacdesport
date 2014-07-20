@@ -1,6 +1,6 @@
 admin_products:
-    pattern:  /
-    defaults: { _controller: "MonSacDeSportBundle:Product:indexAdmin" }
+    pattern:  /page-{page}
+    defaults: { _controller: "MonSacDeSportBundle:Product:indexAdmin", page: 1 }
 
 admin_product_new:
     pattern:  /new
@@ -26,6 +26,6 @@ admin_product_delete:
     requirements: { _method: post|delete }
 
 admin_product_search:
-    pattern:  /search
-    defaults:  { _controller: MonSacDeSportBundle:Product:searchAdmin }
+    pattern:  /search/page-{page}
+    defaults:  { _controller: MonSacDeSportBundle:Product:searchAdmin, page:1 }
     requirements: { _method: get }

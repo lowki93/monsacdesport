@@ -20,6 +20,13 @@ class ProductRepository extends EntityRepository
             ->where("LOWER(p.description) LIKE :search")
             ->setParameter('search', '%'.$search.'%');
 
-        return $products = $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
+    }
+
+    public function paginationQuery()
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        return $qb->getQuery()->getResult();
     }
 }
