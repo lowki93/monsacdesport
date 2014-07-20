@@ -17,7 +17,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                success_handler: terra_nova.redirection_after_login
+                success_handler: monsac_desport.redirection_after_login
             logout:
                 path:   /logout
             anonymous:    true

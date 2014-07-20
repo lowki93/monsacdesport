@@ -2,6 +2,6 @@ parameters:
 #    mon_sac_de_sport.example.class: MonSac\DeSportBundle\Example
 
 services:
-    terra_nova.redirection_after_login:
+    monsac_desport.redirection_after_login:
         class: MonSac\DeSportBundle\Authentification\UserRedirection
         arguments: [@router]
