@@ -1,10 +1,18 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}Accueil{% endblock %}
+
 {% block body %}
     <h2>List of category product</h2>
 
-    {% for productCategory in productCategories %}
-        <a href="{{ path('front_category_product', {"productCategorySlug": productCategory.slug }) }}">{{ productCategory.name }}</a>
-    {% endfor %}
+    {% if productCategories is not empty %}
+        <ul>
+            {% for productCategory in productCategories %}
+                <li>
+                    <a href="{{ path('front_category_product', {"productCategorySlug": productCategory.slug }) }}">{{ productCategory.name }}</a>
+                </li>
+            {% endfor %}
+         </ul>
+    {% endif %}
 
 {% endblock %}

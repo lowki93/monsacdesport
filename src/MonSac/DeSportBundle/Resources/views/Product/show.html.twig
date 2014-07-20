@@ -1,7 +1,16 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Product</h1>
+
+{% block stylesheets %}
+    {% stylesheets
+    '@MonSacDeSportBundle/Resources/public/css/style.sass'
+    filter="cssrewrite,sass" output='css/style.css' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ entity.name }}</h1>
 
     <table class="record_properties">
         <tbody>
