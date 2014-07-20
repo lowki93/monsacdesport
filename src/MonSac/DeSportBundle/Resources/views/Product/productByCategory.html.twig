@@ -28,7 +28,8 @@
                     <td>{{ product.price }}</td>
                     <td>{{ product.quantity }}</td>
                     <td>
-                        <a class="button small" href="{{ path('front_product_show', {'productCategorySlug': product.productCategory.slug,  'productSlug' : product.slug }) }}">Voir sur le site</a>
+                        <a class="button small" href="{{ path('front_product_show', {'productCategorySlug': product.productCategory.slug,  'productSlug' : product.slug }) }}">Voir</a>
+                        <p>ajouter a panier</p>
                     </td>
                 </tr>
             {% endfor %}
