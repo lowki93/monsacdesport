@@ -1,10 +1,21 @@
 {% extends 'MonSacDeSportBundle::admin_layout.html.twig' %}
 
+{% block title %}Admin - Articles{% endblock %}
+
 {% block content %}
     <h1>Articles</h1>
 
     <form action="{{ path('admin_product_search') }}" method="get">
-    	<input class="left" style="width: 75%" type="text" name="s" placeholder="Rechercher un article..." /> <button class="small right" type="submit">Rechercher</button>
+        <div class="large-12">
+            <div class="row collapse">
+                <div class="small-10 columns">
+                    <input class="left" type="text" name="s" placeholder="Rechercher un article..." />
+                </div>
+                <div class="small-2 columns">
+                    <button class="button postfix" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </div>
     </form>
 
     {% if products is not empty %}
@@ -31,7 +42,7 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.brand }}</td>
                         <td>{{ product.size }}</td>
-                        <td>{{ product.price }}</td>
+                        <td>{{ product.price }}€</td>
                         <td>{{ product.quantity }}</td>
                         <td>
                             <a class="button small" href="{{ path('admin_product_edit', { 'id' : product.id }) }}">Modifier</a>

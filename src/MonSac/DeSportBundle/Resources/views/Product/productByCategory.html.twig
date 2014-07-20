@@ -24,7 +24,7 @@
                         <img src="/uploads/{{ image.path }}" alt="{{ product.slug }}-{{ loop.index }}" />
                     {% endfor %}
                     <a class="button small" href="{{ path('front_product_show', {'productCategorySlug': product.productCategory.slug,  'productSlug' : product.slug }) }}">Voir</a>
-                    <p>ajouter a panier</p>
+                    <p class="button small">ajouter a panier</p>
                 </li>
 
             {% endfor %}
